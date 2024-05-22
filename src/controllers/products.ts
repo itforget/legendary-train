@@ -1,5 +1,6 @@
-import express, { Request, Response, NextFunction} from "express";
+import { Request, Response, NextFunction } from "express";
 import Product from "../models/product";
+
 
 async function getProducts(req: Request, res: Response) {
   try {
@@ -11,13 +12,13 @@ async function getProducts(req: Request, res: Response) {
 }
 
 async function getProduct(req: Request, res: Response) {
-    const id = req.params.id;
-    try {
-      const product = await Product.findById(id);
-      res.json(product);
-    } catch (err: any) {
-      res.status(500).json({ message: err.message });
-    }
+  const id = req.params.id;
+  try {
+    const product = await Product.findById(id);
+    res.json(product);
+  } catch (err: any) {
+    res.status(500).json({ message: err.message });
+  }
 }
 
 async function addProducts(req: Request, res: Response) {
@@ -50,5 +51,7 @@ async function deleteProduct(req: Request, res: Response) {
     res.status(500).json({ message: err.message });
   }
 }
-  
+
+
+
 export { getProducts, getProduct, addProducts, modifyProduct, deleteProduct };

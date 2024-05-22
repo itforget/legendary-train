@@ -2,12 +2,14 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
-import router from '../routes/routes'
+import productsRoute from '../routes/products'
+import userRoute from '../routes/user'
 
 const app = express()
 app.use(express.json());
 app.use(cors({ origin: '*' }));
-app.use(router)
+
+app.use(productsRoute, userRoute)
 
 mongoose
   .connect(process.env.MONGO_DB_URL || "")
